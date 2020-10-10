@@ -58,7 +58,6 @@ api.get('/:id', (req: Request, res: Response) => {
             } else {
                 // throw new Error(`The pokemon ${id} has not been found`)
                 res.status(BAD_REQUEST.status).json({status: 400, code:"BAD_REQUEST", description:`The pokemon ${id} has not been found`})
-
             }
         })
     }
@@ -68,7 +67,7 @@ api.get('/:id', (req: Request, res: Response) => {
 })
 
 api.put('/:id', async (req: Request, res: Response) => {
-    const fields = ['id_pokemon', 'name', 'types', 'img', 'height', 'weight', 'weaknesses']
+    const fields = [ 'name', 'types', 'img', 'height', 'weight', 'weaknesses']
     try {
 
 
@@ -79,9 +78,8 @@ api.put('/:id', async (req: Request, res: Response) => {
             throw new Error(`Field${isPlural ? 's' : ''} [ ${missings.join(', ')} ] ${isPlural ? 'are' : 'is'} missing`)
         }
 
-        const { id_pokemon, name, types, img, height, weight, weaknesses } = req.body
+        const { name, types, img, height, weight, weaknesses } = req.body
         const result: UpdateOne = await Pokemon.updateOne({ id_pokemon: id }, {
-            id_pokemon,
             name,
             types,
             img,
