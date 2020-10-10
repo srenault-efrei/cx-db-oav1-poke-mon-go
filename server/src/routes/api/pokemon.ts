@@ -38,6 +38,7 @@ api.get('/', (req: Request, res: Response) => {
     try {
         Pokemon.find(function (err, pokemons: IPokemonDoc[]) {
             if (err) res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+            // res.json(pokemons)
             res.status(OK.status).json(success(pokemons))
         })
     }

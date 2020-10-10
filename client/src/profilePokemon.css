@@ -1,0 +1,152 @@
+.profile{
+    width: 40rem;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-style: none !important;
+    display: inline-block !important;
+    background-color: #fff;
+    border-radius: 0.25rem;
+  
+}
+
+
+
+.Plante-color{
+    background-color:#77c484 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Feu-color{
+    background-color: #f3a460 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Eau-color{
+    background-color: #96b0f4 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Électrique-color{
+    background-color: #FAE14C !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Sol-color{
+    background-color:#E0C069 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Combat-color{
+    background-color:#C03028 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+
+.Normal-color{
+    background-color:#a8a879 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Poison-color{
+    background-color:#9F409F !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Glace-color{
+    background-color:#99D8D9 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Psy-color{
+    background-color:#705998 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Insecte-color{
+    background-color:#A8B937 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Roche-color{
+    background-color:#B89F38 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Dragon-color{
+    background-color:#724AF6 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+.Spectre-color{
+    background-color:#a29db9 !important;
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 10px;
+
+}
+
+
+.img-profile{
+    width: 120px;
+}
+
+h4{
+    margin: 50px
+}
+
+.tabless{
+    margin: auto;
+}
+.table{
+    width: 500px;
+    margin: auto
+}
+
+td{
+    padding-left: 20px;
+}
+
+.fleche-picture{
+    width: 50px;
+    margin: 15px;   
+}
