@@ -39,7 +39,7 @@ const Pokemons = () => {
 
         <div>
             <div className='content'>
-                <div className="big-title"> <h1>Mon Pokedex </h1></div>
+                <div className="big-title"> <h1> Pokedex </h1></div>
                 {
                     pokemons.map(pokemon => (
                         <div key={pokemon.id_pokemon}  className="card">

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import '../profilePokemon.css';
-import { useHistory } from "react-router-dom";
+import '../ProfilePokemon.css';
 
 
 
 const ShowPokemon = () => {
 
-    const [ pokemon, setPokemon ] = useState([])
-    const [ princpalType, setPrincipalType ] = useState('')
-    const history = useHistory()
+    const [pokemon, setPokemon] = useState([])
+    const [princpalType, setPrincipalType] = useState('')
 
     useEffect(() => {
         fetchPokemon()
@@ -33,16 +31,20 @@ const ShowPokemon = () => {
     }
 
     const deletePokemon = async (id) => {
-        const response = await fetch(`http://localhost:4242/api/pokemons/${id}`,{
+        const response = await fetch(`http://localhost:4242/api/pokemons/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }  
+            }
         })
-        const data = await response
-        console.log(data)
-        // history.push('/')
+        const data = await response.json()
+
+        if (data.status === 200) {
+            alert('successful deletion')
+        } else {
+            console.log(data.err)
+        }
     }
 
 
@@ -60,12 +62,6 @@ const ShowPokemon = () => {
     return (
 
         <div>
-            <a href='/'>
-                <img src='https://image.flaticon.com/icons/png/512/84/84339.png'
-                    alt='fleche'
-                    className='fleche-picture'>
-                </img>
-            </a>
             <div className='content'>
 
                 <div className="profile">
@@ -99,8 +95,8 @@ const ShowPokemon = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td> <strong>Taille : </strong>{pokemon.height}</td>
-                                <td> <strong>Poids :</strong> {pokemon.weight}</td>
+                                <td> <strong>Height : </strong>{pokemon.height}</td>
+                                <td> <strong>Weight :</strong> {pokemon.weight}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -120,19 +116,26 @@ const ShowPokemon = () => {
                             <tr>
                                 {
                                     pokemon.weaknesses ?
-                                        pokemon.weaknesses.map(weakness => (
-                                            <button className={`btn  ${weakness}-color disabled `}>{weakness}</button>
+                                        pokemon.weaknesses.map((weakness, index) => (
+                                            <td key={index}><button className={`btn  ${weakness}-color disabled `}>{weakness}</button></td>
                                         ))
                                         : <td></td>
                                 }
                             </tr>
                         </tbody>
                     </table>
+
                     <div style={{ marginTop: "100px" }}>
-                    <button type="button" className="btn btn-warning">Edit</button>
-                    <button type="button" className="btn btn-danger" onClick={deletePokemon(pokemon.id_pokemon)}>Delete</button>
+                        <a href={`/pokemons/edit/${pokemon.id_pokemon}`}>
+                            <button type="button" className="btn btn-warning">Edit</button>
+                        </a>
+
+                        <a href='/'>
+                            <button type="button" className="btn btn-danger" onClick={() => deletePokemon(pokemon.id_pokemon)}>Delete</button>
+                        </a>
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>

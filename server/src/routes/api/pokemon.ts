@@ -68,7 +68,7 @@ api.get('/:id', (req: Request, res: Response) => {
 })
 
 api.put('/:id', async (req: Request, res: Response) => {
-    const fields = [ 'name', 'types', 'img', 'height', 'weight', 'weaknesses']
+    const fields = [ 'name', 'types', 'height', 'weight', 'weaknesses']
     try {
 
 
@@ -79,11 +79,10 @@ api.put('/:id', async (req: Request, res: Response) => {
             throw new Error(`Field${isPlural ? 's' : ''} [ ${missings.join(', ')} ] ${isPlural ? 'are' : 'is'} missing`)
         }
 
-        const { name, types, img, height, weight, weaknesses } = req.body
+        const { name, types, height, weight, weaknesses } = req.body
         const result: UpdateOne = await Pokemon.updateOne({ id_pokemon: id }, {
             name,
             types,
-            img,
             height,
             weight,
             weaknesses
@@ -93,7 +92,7 @@ api.put('/:id', async (req: Request, res: Response) => {
         if (result.nModified === 0) {
             throw new Error(`The pokemon ${id} has not been edited`)
         } else {
-            res.status(OK.status).json({description: `The pokemon ${id} was been edited`})
+            res.status(OK.status).json({ status: 200, description: `The pokemon ${id} was been edited`})
         }
     }
     catch (err) {
@@ -109,7 +108,7 @@ api.delete('/:id', async (req: Request, res: Response) => {
         if (result.deletedCount === 0) {
             throw new Error(`The pokemon ${id} has not been found`)
         } else {
-            res.status(OK.status).json({ description: `The pokemon ${id} was been removed` })
+            res.status(OK.status).json({status: 200, description: `The pokemon ${id} was been removed` })
         }
     }
     catch (err) {

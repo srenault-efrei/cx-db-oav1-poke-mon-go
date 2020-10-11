@@ -105,6 +105,7 @@
     border-color: none !important;
     margin-left : 5px !important;
     margin-top: 5px !important;
+    min-height: 50px;
 }
 
 a{
