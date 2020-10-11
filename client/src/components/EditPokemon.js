@@ -106,7 +106,7 @@ const EditPokemon = () => {
                                 {
                                     types.map((i, index) => (
 
-                                        princpalType == types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
+                                        princpalType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
                                             : <option key={i} value={types[index]}> {types[index]} </option>
                                     ))
                                 }
@@ -115,11 +115,11 @@ const EditPokemon = () => {
 
                         <div className="form-group">
                             <label htmlFor="selection">Second Type</label>
-                            <select id="selection" className="form-control" id="secondType"
+                            <select className="form-control" id="secondType"
                                 onChange={(e) => setSecondType(e.target.value)}
                             >
                                 {types.map((i, index) => (
-                                    secondType == types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
+                                    secondType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
                                         : <option key={i} value={types[index]} > {types[index]} </option>
                                 ))}
                             </select>
@@ -141,7 +141,7 @@ const EditPokemon = () => {
 
                         <div className="form-group">
                             <label htmlFor="selection">Weaknesses</label>
-                            <select id="selection" className="form-control" multiple required
+                            <select id="Weaknesses" className="form-control" multiple required
                                 onChange={(e) => handleChange(e)}
                             >
                                 {types.map((i, index) => (

@@ -67,7 +67,7 @@ const ShowPokemon = () => {
                 <div className="profile">
                     {pokemon.types ?
                         <h2 className={` ${princpalType}-color`}>{pokemon.name} #{pokemon.id_pokemon}</h2>
-                        : <h2></h2>
+                        : <h2>''</h2>
                     }
                     <img className='img-profile'
                         src={`http://www.serebii.net/pokemongo/pokemon/${defineNumImg(pokemon.id_pokemon)}.png`}
