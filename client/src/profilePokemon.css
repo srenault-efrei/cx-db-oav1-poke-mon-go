@@ -10,7 +10,15 @@
     margin-top: 10px;
 }
 
-
+div.centre {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 100px;
+    margin-left: -150px; /* Cette valeur doit être la moitié négative de la valeur du width */
+    margin-top: -50px; /* Cette valeur doit être la moitié négative de la valeur du height */
+}
 
 .Plante-color{
     background-color:#77c484 !important;

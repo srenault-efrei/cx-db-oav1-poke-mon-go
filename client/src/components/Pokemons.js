@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../Pokemons.css'
+import Research from './ResearchPokemon'
 
 
 const Pokemons = () => {
 
 
     const [pokemons, setPokemons] = useState([])
-
-    useEffect(() => {
-        fetchPokemons()
-    }, [])
-
 
     const fetchPokemons = async () => {
         const response = await fetch('http://localhost:4242/api/pokemons', {
@@ -22,6 +18,10 @@ const Pokemons = () => {
         const data = await response.json()
         setPokemons(data)
     }
+
+    useEffect(() => {
+        fetchPokemons()
+    }, [])
 
 
     const defineNumImg = (id) => {
@@ -40,6 +40,7 @@ const Pokemons = () => {
         <div>
             <div className='content'>
                 <div className="big-title"> <h1> Pokedex </h1></div>
+                <Research setPokemons={setPokemons} fetchPokemons={fetchPokemons}></Research>
                 {
                     pokemons.map(pokemon => (
                         <div key={pokemon.id_pokemon}  className="card">

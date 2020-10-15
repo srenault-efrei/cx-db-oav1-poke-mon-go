@@ -67,6 +67,31 @@ api.get('/:id', (req: Request, res: Response) => {
     }
 })
 
+api.post('/research', async (req: Request, res: Response) => {
+    const fields = [ 'name' ]
+    try {
+
+        const missings = fields.filter((field: string) => !req.body[field])
+        if (!isEmpty(missings)) {
+            const isPlural = missings.length > 1
+            throw new Error(`Field${isPlural ? 's' : ''} [ ${missings.join(', ')} ] ${isPlural ? 'are' : 'is'} missing`)
+        }
+
+        Pokemon.find({ name:<String> req.body.name }, function (err, pokemon: IPokemonDoc) {
+            if (err) res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+            if (pokemon) {
+                res.status(OK.status).json(success(pokemon))
+            } else {
+                // throw new Error(`The pokemon ${id} has not been found`)
+                res.status(BAD_REQUEST.status).json({status: 400, code:"BAD_REQUEST", description:`The pokemon ${req.body} has not been found`})
+            }
+        })
+    }
+    catch (err) {
+        res.status(BAD_REQUEST.status).json(error(BAD_REQUEST, err))
+    }
+})
+
 api.put('/:id', async (req: Request, res: Response) => {
     const fields = [ 'name', 'types', 'height', 'weight', 'weaknesses']
     try {

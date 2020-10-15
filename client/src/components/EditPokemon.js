@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom";
 
 
 
 const EditPokemon = () => {
-
-    const history = useHistory();
 
     const [pokemon, setPokemon] = useState([])
     const [name, setName] = useState('')
@@ -14,12 +11,7 @@ const EditPokemon = () => {
     const [weaknesses, setWeaknesses] = useState([])
     const [height, setHeight] = useState('')
     const [weight, setWeight] = useState('')
-
-
-
-    useEffect(() => {
-        fetchPokemon()
-    }, [])
+    const [alert, setAlert] = useState(false)
 
     const fetchPokemon = async () => {
         let url = document.location.href
@@ -45,6 +37,10 @@ const EditPokemon = () => {
         setWeight(data.weight)
     }
 
+    useEffect(() => {
+        fetchPokemon()
+    }, [])
+
     const updatePokemon = async (id) => {
 
         const response = await fetch(`http://localhost:4242/api/pokemons/${id}`, {
@@ -64,8 +60,7 @@ const EditPokemon = () => {
         const data = await response.json()
 
         if (data.status === 200) {
-            history.push('/')
-            alert('successful modification')
+            setAlert(true)
         } else {
             console.log(data.err)
         }
@@ -87,74 +82,88 @@ const EditPokemon = () => {
     return (
         <div className=''>
 
-            <div className="container">
-                <h1>Edit Pokemon {pokemon.id_pokemon}</h1>
-                <form>
-                    <fieldset>
-                        <div className="form-group">
-                            <label htmlFor="nom">Name *</label>
-                            <input type="text" required className="form-control" id="name" placeholder="Bouroi" defaultValue={pokemon.name}
-                                onChange={(e) => setName(e.target.value)}
-                            ></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="selection">Principal Type *</label>
-                            <select id="selection" className="form-control" required
-                            onChange={(e) => setPrincipalType(e.target.value)}
->
-                                {
-                                    types.map((i, index) => (
-
-                                        princpalType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
-                                            : <option key={i} value={types[index]}> {types[index]} </option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="selection">Second Type</label>
-                            <select className="form-control" id="secondType"
-                                onChange={(e) => setSecondType(e.target.value)}
-                            >
-                                {types.map((i, index) => (
-                                    secondType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
-                                        : <option key={i} value={types[index]} > {types[index]} </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="nom">Height (m) *</label>
-                            <input type="text" required className="form-control" id="Height" placeholder="0.50 m" defaultValue={pokemon.height}
-                                onChange={(e) => setHeight(e.target.value)}
-                            ></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="nom">Weight (kg) *</label>
-                            <input type="text" required className="form-control" id="Weight" placeholder="20 kg" defaultValue={pokemon.weight}
-                                onChange={(e) => setWeight(e.target.value)}
-                            ></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="selection">Weaknesses</label>
-                            <select id="Weaknesses" className="form-control" multiple required
-                                onChange={(e) => handleChange(e)}
-                            >
-                                {types.map((i, index) => (
-                                    <option key={i} value={types[index]}> {types[index]} </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <button type="button" className="btn btn-success" onClick={() => updatePokemon(pokemon.id_pokemon)}>Confirm</button>
-
-                    </fieldset>
-                </form>
+            {alert ? <div class="alert alert-success col-md-12 centre" role="alert">
+                {pokemon.name} has been edited
+                    <p>
+                    click <a href="/" class="alert-link">here</a> to go Home
+                    </p>
             </div>
+                : <div className="container">
+                    <h1>Edit</h1>
+                    <form>
+                        <fieldset>
+                            <div className="form-group">
+                                <label htmlFor="nom">Name *</label>
+                                <input type="text" required className="form-control" id="name" placeholder="Bouroi" defaultValue={pokemon.name}
+                                    onChange={(e) => setName(e.target.value)}
+                                ></input>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="selection">Principal Type *</label>
+                                <select id="selection" className="form-control" required
+                                    onChange={(e) => setPrincipalType(e.target.value)}
+                                >
+                                    {
+                                        types.map((i, index) => (
+
+                                            princpalType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
+                                                : <option key={i} value={types[index]}> {types[index]} </option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="selection">Second Type</label>
+                                <select className="form-control" id="secondType"
+                                    onChange={(e) => setSecondType(e.target.value)}
+                                >
+                                    {types.map((i, index) => (
+                                        secondType === types[index] ? <option key={i} value={types[index]} selected> {types[index]} </option>
+                                            : <option key={i} value={types[index]} > {types[index]} </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="nom">Height (m) *</label>
+                                <input type="text" required className="form-control" id="Height" placeholder="0.50 m" defaultValue={pokemon.height}
+                                    onChange={(e) => setHeight(e.target.value)}
+                                ></input>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="nom">Weight (kg) *</label>
+                                <input type="text" required className="form-control" id="Weight" placeholder="20 kg" defaultValue={pokemon.weight}
+                                    onChange={(e) => setWeight(e.target.value)}
+                                ></input>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="selection">Weaknesses</label>
+                                <select id="Weaknesses" className="form-control" multiple required
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    {types.map((i, index) => (
+                                        <option key={i} value={types[index]}> {types[index]} </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>
+                                <a href={`/pokemons/show/${pokemon.id_pokemon}`}>
+                                    <button type="button" className="btn btn-warning">Return</button>
+
+                                </a>
+                                <button style={{ float: "right" }} type="button" className="btn btn-success" onClick={() => updatePokemon(pokemon.id_pokemon)}>Confirm</button>
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                </div>}
+
         </div>
     )
 }

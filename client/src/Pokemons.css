@@ -70,7 +70,8 @@
 
 
 .img-pokemon{
-    width: 150px;
+    max-width: 150px;
+    min-height: 150px;
     margin: auto;
     margin-top:20px;
     border-radius: 5px

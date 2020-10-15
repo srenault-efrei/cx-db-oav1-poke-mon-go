@@ -1,12 +1,12 @@
 version: '3'
 services:
-  api:
-    container_name: app-node-container
-    build: .
-    links:
-      - database  
-    depends_on:
-      - database
+  # api:
+  #   container_name: app-node-container
+  #   build: .
+  #   links:
+  #     - database  
+  #   depends_on:
+  #     - database
   database:
     image: mongo:latest
     container_name: app-mongo-container
